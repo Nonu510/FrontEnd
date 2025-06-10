@@ -125,6 +125,30 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filtres {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	gap: 10px;
+	margin-bottom: 30px;
+}
+.btn {
+	font-family: 'syne';
+	border: 1px solid rgba(29, 97, 84, 1);
+	color: rgba(29, 97, 84, 1);
+	font-size: 16px;
+	font-weight: 700;
+	border-radius: 60px;
+	background-color: white;
+	padding: 8px 15px;
+}
+
+.tous {
+	background-color: rgba(29, 97, 84, 1);
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
