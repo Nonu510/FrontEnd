@@ -159,3 +159,56 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em;
 }
+
+/* Styles pour les messages d'erreur - adaptés à votre design */
+.error-message {
+    background-color: #fff2f2;
+    color: #B1663C;
+    padding: 15px;
+    border: 1px solid #B1663C;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* Animation pour l'apparition du message d'erreur */
+.error-message {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style pour les champs en erreur */
+.form-error {
+    border: 2px solid #B1663C !important;
+    background-color: #fff9f9;
+}
+
+/* Message de succès (optionnel) */
+.success-message {
+    background-color: #f0f8f0;
+    color: #1D6154;
+    padding: 15px;
+    border: 1px solid #1D6154;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    animation: slideIn 0.3s ease-out;
+}
