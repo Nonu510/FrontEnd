@@ -72,3 +72,36 @@ for (let index = 0; index < categories.length; index++) {
 
 fetchCategories()
 recupererprojet ();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    
+    const editionBar = document.querySelector(".edition");
+    const filtres = document.querySelector(".filtres");
+    const loginLink = document.getElementById("log");
+
+    if (editionBar) {
+        editionBar.style.display = isLoggedIn ? "flex" : "none";
+    }
+
+    // Masquer les filtres si connecté
+    if (filtres) {
+        filtres.style.display = isLoggedIn ? "none" : "flex";
+    }
+
+    // Modifier le bouton login/logout
+    if (loginLink) {
+        if (isLoggedIn) {
+            loginLink.textContent = "logout";
+            loginLink.href = "#";
+            loginLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                localStorage.clear();
+                location.reload();
+            });
+        } else {
+            loginLink.textContent = "login";
+            loginLink.href = "login.html";
+        }
+    }
+});
