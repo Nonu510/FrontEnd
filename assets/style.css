@@ -79,14 +79,16 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(3px);
+	background: rgba(0, 0, 0, 0.3);
 	z-index: 1000;
 }
 
 .modal-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	width: 630px;
-	max-height: 90vh;
+	height: 688px;
 	background-color: white;
 	border-radius: 10px;
 	position: relative;
@@ -112,8 +114,6 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px 30px;
-	background: #f8f9fa;
-	border-bottom: 1px solid #dee2e6;
 }
 
 .modal-nav {
@@ -125,7 +125,7 @@ body {
 .js-modal-close, .modal-back {
 	background: none;
 	border: none;
-	font-size: 20px;
+	font-size: 18px;
 	cursor: pointer;
 	width: 30px;
 	height: 30px;
@@ -143,18 +143,23 @@ body {
 .js-modal-close::before {
 	content: "✕";
 	font-weight: bold;
+	top: 30px;
+	right: 30px;
+	position: absolute;
 }
 
 .modal-back::before {
-	content: "←";
+	content: "";
 	font-weight: bold;
 }
 
-/* Corps de la modale */
 .modal-body {
-	padding: 30px;
+	padding: 0px 100px;
 	max-height: 60vh;
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #titlemodal {
@@ -166,20 +171,17 @@ body {
 	margin: 0;
 }
 
-/* Galerie dans la modale */
 .modal-gallery {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
-	gap: 15px;
+	gap: 10px;
 	margin: 30px 0;
 }
 
 .modal-gallery figure {
 	position: relative;
 	cursor: pointer;
-	border-radius: 5px;
 	overflow: hidden;
-	transition: transform 0.2s ease;
 }
 
 .modal-gallery figure:hover {
@@ -201,9 +203,8 @@ body {
 	color: white;
 	padding: 5px;
 	border-radius: 3px;
-	font-size: 12px;
-	opacity: 0;
-	transition: opacity 0.3s ease;
+	font-size: 10px;
+	opacity: 1;
 }
 
 .modal-gallery figure:hover .delete-icon {
@@ -223,8 +224,8 @@ body {
 	font-size: 14px;
 	transition: all 0.3s ease;
 	display: block;
-	margin: 30px auto 0;
-	min-width: 200px;
+	margin: 0px auto 30px;
+	min-width: 237px;
 }
 
 .modal-btn:hover {
@@ -233,14 +234,18 @@ body {
 	box-shadow: 0 5px 15px rgba(29, 97, 84, 0.3);
 }
 
-/* Formulaire d'ajout */
+#upload-form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
 .upload-container {
-	background: #E8F1F6;
-	border-radius: 10px;
+	background: rgba(232, 241, 246, 1);
+	border-radius: 3px;
 	padding: 30px;
 	text-align: center;
 	margin-bottom: 30px;
-	border: 2px dashed #B9D6E8;
 	transition: all 0.3s ease;
 	cursor: pointer;
 	position: relative;
@@ -332,11 +337,9 @@ body {
 
 .form-separator {
 	height: 1px;
-	background: #B3B3B3;
+	background: rgba(179, 179, 179, 1);
 	margin: 30px 0;
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 100%;
 }
 
 header {
@@ -455,9 +458,9 @@ li:hover {
 	padding: 8px 15px;
 }
 
-.tous {
-	background-color: rgba(29, 97, 84, 1);
-	color: white;
+.btn.active {
+  background-color: rgba(29, 97, 84, 1);
+  color: white;
 }
 
 .gallery {
@@ -470,7 +473,6 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 #contact {
 	width: 50%;

@@ -17,7 +17,6 @@ async function recupererprojet () {
   }
 }
 
-// Boucle sur pour chaque iteration crée une image avec son alt et titre 
 function actualisergallery(works) {
     gallery.innerHTML = "";
     for (let i = 0; i < works.length; i++) {
@@ -54,7 +53,10 @@ function filtrecategories(categories) {
     tous.innerText = "Tous";
     tous.classList.add("btn");
     tous.classList.add("tous")
-    tous.addEventListener("click", () => actualisergallery(allWorks));
+    tous.addEventListener("click", () => {
+      actualisergallery(allWorks);
+      setActiveButton(tous);
+});    
     filtres.appendChild(tous);
 
 for (let index = 0; index < categories.length; index++) {
@@ -65,13 +67,21 @@ for (let index = 0; index < categories.length; index++) {
     button.addEventListener("click", () => {
       const filteredworks = allWorks.filter(work => work.categoryId === category.id);
       actualisergallery(filteredworks);
+      setActiveButton(button);
     });
     filtres.appendChild(button)
   }
 }
 
+function setActiveButton(activeBtn) {
+  const allButtons = document.querySelectorAll(".filtres .btn");
+  allButtons.forEach(btn => btn.classList.remove("active"));
+  activeBtn.classList.add("active");
+}
+
 fetchCategories()
 recupererprojet ();
+setActiveButton(tous);
 
 document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -79,17 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const editionBar = document.querySelector(".edition");
     const filtres = document.querySelector(".filtres");
     const loginLink = document.getElementById("log");
-
+    const modifierBtn = document.querySelector('.js-modal')
     if (editionBar) {
         editionBar.style.display = isLoggedIn ? "flex" : "none";
     }
 
-    // Masquer les filtres si connecté
     if (filtres) {
         filtres.style.display = isLoggedIn ? "none" : "flex";
     }
 
-    // Modifier le bouton login/logout
     if (loginLink) {
         if (isLoggedIn) {
             loginLink.textContent = "logout";
@@ -103,5 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
             loginLink.textContent = "login";
             loginLink.href = "login.html";
         }
+    }
+    if (modifierBtn) {
+        modifierBtn.style.display = isLoggedIn ? "inline-block" : "none";
     }
 });

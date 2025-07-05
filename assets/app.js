@@ -34,21 +34,15 @@ document.querySelectorAll('.js-modal').forEach(a => {
 })
 
 
-// ========================
-// Variables globales
-
-// ========================
 let currentModalPage = "gallery";
 const token = localStorage.getItem("authToken");
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click', function (e) {
         openModal(e);
-        afficherPageGalerie(allWorks); // <-- affiche la galerie automatiquement
+        afficherPageGalerie(allWorks); 
     });
 });
-// ========================
-// Affichage de la page galerie dans la modale
-// ========================
+
 function afficherPageGalerie(works) {
     currentModalPage = "gallery";
     const modalWrapper = document.querySelector('.modal-wrapper');
@@ -64,8 +58,9 @@ function afficherPageGalerie(works) {
         <div class="modal-body">
             <div class="modal-gallery"></div>
             <div class="form-separator"></div>
-            <button class="modal-btn" id="open-upload-page">Ajouter une photo</button>
         </div>
+        <button class="modal-btn" id="open-upload-page">Ajouter une photo</button>
+
     `;
 
     const galleryContainer = modalWrapper.querySelector(".modal-gallery");
@@ -92,14 +87,11 @@ function afficherPageGalerie(works) {
         galleryContainer.appendChild(figure);
     });
 
-    // Event listeners
     modalWrapper.querySelector("#open-upload-page").addEventListener("click", afficherPageAjout);
     modalWrapper.querySelector(".js-modal-close").addEventListener("click", closeModal);
 }
 
-// ========================
-// Affichage de la page d'ajout dans la modale
-// ========================
+
 function afficherPageAjout() {
     currentModalPage = "upload";
     const modalWrapper = document.querySelector('.modal-wrapper');
@@ -107,7 +99,7 @@ function afficherPageAjout() {
     modalWrapper.innerHTML = `
         <div class="modal-header">
             <div class="modal-nav">
-                <button class="modal-back" id="return-to-gallery" aria-label="Retour à la galerie"></button>
+                <button class="modal-back" id="return-to-gallery" aria-label="Retour à la galerie"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
             <h1 id="titlemodal">Ajout photo</h1>
             <div class="modal-nav">
@@ -325,7 +317,7 @@ async function handleFormSubmit(e) {
 // ========================
 // Chargement des catégories
 // ========================
-async function chargerCategoriesDansSelect() {
+async function chargerCategoriesDansSelect() {     
     const select = document.getElementById('image-category');
     if (!select) return;
     
