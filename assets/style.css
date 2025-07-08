@@ -109,13 +109,6 @@ body {
 }
 
 /* Header de la modale */
-.modal-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 30px;
-}
-
 .modal-nav {
 	display: flex;
 	gap: 15px;
@@ -133,6 +126,10 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	top: 30px;
+	right: 30px;
+	position: absolute;
+
 	transition: background-color 0.3s ease;
 }
 
@@ -143,9 +140,7 @@ body {
 .js-modal-close::before {
 	content: "✕";
 	font-weight: bold;
-	top: 30px;
-	right: 30px;
-	position: absolute;
+	font-size: 15px;
 }
 
 .modal-back::before {
@@ -168,7 +163,7 @@ body {
 	font-weight: 400;
 	color: #000;
 	text-align: center;
-	margin: 0;
+	margin-top: 30px;
 }
 
 .modal-gallery {
@@ -234,6 +229,39 @@ body {
 	box-shadow: 0 5px 15px rgba(29, 97, 84, 0.3);
 }
 
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.modal-header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+}
+
+.modal-back {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.js-modal-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.fa-arrow-left:before {
+    font-size: 21px;
+}
+
 #upload-form {
 	display: flex;
 	flex-direction: column;
@@ -243,7 +271,7 @@ body {
 .upload-container {
 	background: rgba(232, 241, 246, 1);
 	border-radius: 3px;
-	padding: 30px;
+	padding: 10px 20px;
 	text-align: center;
 	margin-bottom: 30px;
 	transition: all 0.3s ease;
@@ -261,12 +289,6 @@ body {
 	background: #f0f8f5;
 }
 
-.upload-icon {
-	font-size: 48px;
-	color: #B9D6E8;
-	margin-bottom: 15px;
-}
-
 .upload-text {
 	color: #444;
 	font-size: 14px;
@@ -275,14 +297,13 @@ body {
 
 .upload-preview {
 	max-width: 100%;
-	max-height: 200px;
-	border-radius: 5px;
-	margin: 15px 0;
+	max-height: 150px;
 	display: none;
 }
 
 .upload-preview.show {
 	display: block;
+	margin: auto;
 }
 
 .file-input {
@@ -309,6 +330,10 @@ body {
 .form-group {
 	margin-bottom: 20px;
 	text-align: left;
+}
+
+#image-title {
+	box-sizing: border-box;
 }
 
 .form-group label {
@@ -431,12 +456,14 @@ li:hover {
 	margin-bottom: 40px;
 }
 
-#modifier i {
-	margin-bottom: 40px;
+.fa-image {
+	font-size: 80px;
+	color: rgba(185, 197, 204, 1);
 }
 
 #modifier a {
 	font-size: 18px;
+	margin-bottom: 40px;
 }
 
 .filtres {

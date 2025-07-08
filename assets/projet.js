@@ -70,6 +70,7 @@ for (let index = 0; index < categories.length; index++) {
       setActiveButton(button);
     });
     filtres.appendChild(button)
+    setActiveButton(tous)
   }
 }
 
@@ -81,7 +82,6 @@ function setActiveButton(activeBtn) {
 
 fetchCategories()
 recupererprojet ();
-setActiveButton(tous);
 
 document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";

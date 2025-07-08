@@ -48,13 +48,10 @@ function afficherPageGalerie(works) {
     const modalWrapper = document.querySelector('.modal-wrapper');
     
     modalWrapper.innerHTML = `
-        <div class="modal-header">
-            <div></div>
-            <h1 id="titlemodal">Galerie photo</h1>
-            <div class="modal-nav">
-                <button class="js-modal-close" aria-label="Fermer la modale"></button>
-            </div>
+        <div class="modal-nav">
+            <button class="js-modal-close" aria-label="Fermer la modale"></button>
         </div>
+        <h1 id="titlemodal">Galerie photo</h1>
         <div class="modal-body">
             <div class="modal-gallery"></div>
             <div class="form-separator"></div>
@@ -98,19 +95,17 @@ function afficherPageAjout() {
     
     modalWrapper.innerHTML = `
         <div class="modal-header">
-            <div class="modal-nav">
-                <button class="modal-back" id="return-to-gallery" aria-label="Retour à la galerie"><i class="fa-solid fa-arrow-left"></i></button>
-            </div>
+            <button class="modal-back" id="return-to-gallery" aria-label="Retour à la galerie">
+            <i class="fa-solid fa-arrow-left"></i>
+            </button>
             <h1 id="titlemodal">Ajout photo</h1>
-            <div class="modal-nav">
-                <button class="js-modal-close" aria-label="Fermer la modale"></button>
-            </div>
+            <button class="js-modal-close" aria-label="Fermer la modale"></button>
         </div>
         <div class="modal-body">
             <form id="upload-form">
                 <div class="upload-container" id="upload-container">
                     <div class="upload-content">
-                        <div class="upload-icon">🖼️</div>
+                        <div class="upload-icon"><i class="fa-regular fa-image"></i></div>
                         <button type="button" class="file-select-btn" id="file-select-btn">+ Ajouter photo</button>
                         <p class="upload-text">jpg, png : 4mo max</p>
                     </div>
@@ -126,7 +121,7 @@ function afficherPageAjout() {
                 <div class="form-group">
                     <label for="image-category">Catégorie</label>
                     <select id="image-category" name="category" required>
-                        <option value="">Sélectionner une catégorie</option>
+                        <option value=""></option>
                     </select>
                 </div>
                 
@@ -154,6 +149,7 @@ function afficherPageAjout() {
     
     // Validation du formulaire
     setupFormValidation();
+    validateForm(); 
 }
 
 // ========================
@@ -314,9 +310,6 @@ async function handleFormSubmit(e) {
     }
 }
 
-// ========================
-// Chargement des catégories
-// ========================
 async function chargerCategoriesDansSelect() {     
     const select = document.getElementById('image-category');
     if (!select) return;
@@ -330,7 +323,7 @@ async function chargerCategoriesDansSelect() {
         const categories = await response.json();
         
         // Vider les options existantes (sauf la première)
-        select.innerHTML = '<option value="">Sélectionner une catégorie</option>';
+        select.innerHTML = '<option value=""></option>';
         
         categories.forEach(category => {
             const option = document.createElement("option");
