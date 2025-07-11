@@ -1,9 +1,10 @@
 let modal = null
-
+// ouverture de la modale
 const openModal = function (e) {
     e.preventDefault()
     const target = document.querySelector(e.target.getAttribute('href'))
     modal = target;
+    if (modal === null) return
     modal.style.display = null
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-modal', 'true')
@@ -11,7 +12,7 @@ const openModal = function (e) {
     modal.addEventListener('click', closeModal)
     modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
 }
-
+// Fermeture de la modale
 const closeModal = function (e) {
     if (modal === null) return
     e.preventDefault()
@@ -29,11 +30,6 @@ const stopPropagation = function (e) {
     e.stopPropagation()
 }
 
-document.querySelectorAll('.js-modal').forEach(a => {
-    a.addEventListener('click', openModal)
-})
-
-
 let currentModalPage = "gallery";
 const token = localStorage.getItem("authToken");
 document.querySelectorAll('.js-modal').forEach(a => {
@@ -42,7 +38,7 @@ document.querySelectorAll('.js-modal').forEach(a => {
         afficherPageGalerie(allWorks); 
     });
 });
-
+// affichage page gallery de la modale
 function afficherPageGalerie(works) {
     currentModalPage = "gallery";
     const modalWrapper = document.querySelector('.modal-wrapper');
@@ -88,7 +84,7 @@ function afficherPageGalerie(works) {
     modalWrapper.querySelector(".js-modal-close").addEventListener("click", closeModal);
 }
 
-
+// afficher page d'ajout modale
 function afficherPageAjout() {
     currentModalPage = "upload";
     const modalWrapper = document.querySelector('.modal-wrapper');
@@ -137,7 +133,6 @@ function afficherPageAjout() {
     // Gestion de l'upload de fichier
     setupFileUpload();
     
-    // Event listeners
     modalWrapper.querySelector(".js-modal-close").addEventListener("click", closeModal);
     modalWrapper.querySelector("#return-to-gallery").addEventListener("click", () => {
         afficherPageGalerie(allWorks);
@@ -152,9 +147,8 @@ function afficherPageAjout() {
     validateForm(); 
 }
 
-// ========================
 // Gestion de l'upload de fichier
-// ========================
+
 function setupFileUpload() {
     const uploadContainer = document.getElementById('upload-container');
     const fileInput = document.getElementById('image-upload');
@@ -163,7 +157,6 @@ function setupFileUpload() {
     const uploadContent = uploadContainer.querySelector('.upload-content');
 
     // Clic sur le bouton ou la zone
-    fileSelectBtn.addEventListener('click', () => fileInput.click());
     uploadContainer.addEventListener('click', (e) => {
         if (e.target === uploadContainer || e.target.closest('.upload-content')) {
             fileInput.click();
@@ -197,13 +190,12 @@ function setupFileUpload() {
     function handleFileSelect() {
         const file = fileInput.files[0];
         if (file) {
-            // Vérifications
             if (!file.type.startsWith('image/')) {
                 alert('Veuillez sélectionner un fichier image.');
                 return;
             }
             
-            if (file.size > 4 * 1024 * 1024) { // 4MB
+            if (file.size > 4 * 1024 * 1024) { 
                 alert('Le fichier ne doit pas dépasser 4MB.');
                 return;
             }
@@ -224,9 +216,8 @@ function setupFileUpload() {
     }
 }
 
-// ========================
+
 // Validation du formulaire
-// ========================
 function setupFormValidation() {
     const form = document.getElementById('upload-form');
     const inputs = form.querySelectorAll('input[required], select[required]');
@@ -251,9 +242,9 @@ function validateForm() {
     submitBtn.style.opacity = isValid ? '1' : '0.5';
 }
 
-// ========================
+
 // Gestion de la soumission du formulaire
-// ========================
+
 async function handleFormSubmit(e) {
     e.preventDefault();
     
@@ -297,9 +288,6 @@ async function handleFormSubmit(e) {
         // Retourner à la page galerie
         afficherPageGalerie(allWorks);
         
-        // Message de succès (optionnel)
-        console.log("Projet ajouté avec succès !");
-
     } catch (error) {
         console.error("Erreur lors de l'ajout du projet:", error);
         alert("Erreur lors de l'ajout du projet. Veuillez réessayer.");
@@ -322,9 +310,6 @@ async function chargerCategoriesDansSelect() {
         
         const categories = await response.json();
         
-        // Vider les options existantes (sauf la première)
-        select.innerHTML = '<option value=""></option>';
-        
         categories.forEach(category => {
             const option = document.createElement("option");
             option.value = category.id;
@@ -336,9 +321,8 @@ async function chargerCategoriesDansSelect() {
     }
 }
 
-// ========================
+
 // Suppression d'un projet
-// ========================
 async function supprimerProjet(id) {
     if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
         return;
@@ -363,7 +347,6 @@ async function supprimerProjet(id) {
         actualisergallery(allWorks);
         afficherPageGalerie(allWorks);
         
-        console.log("Projet supprimé avec succès");
 
     } catch (error) {
         console.error("Erreur lors de la suppression:", error);
